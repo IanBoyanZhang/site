@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://www.blackbird-automotive.com/ -->
+<html style="height: 600px; overflow-y: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, user-scalable=1 , minimum-scale=0.9, maximum-scale=1.0">
+
+<!-- For facebook -->
+<!-- <meta property="og:title" content="BLACKBIRD AUTOMOTIVE">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://www.blackbird-automotive.com/">
+<meta property="og:image" content="http://www.blackbird-automotive.com/Array"> -->
+
+<title>VERTEX</title>
+<!-- <script async="" src="./BLACKBIRD AUTOMOTIVE_files/analytics.js"></script> -->
+
+<script type="application/javascript" src="./resource/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./resource/js/jquery.preload.min.js"></script>
+<script type="application/javascript">
+
+var image_src = new Array(
+"images/landing_page/BA_BG_04.jpg"
+
+);
+
+jQuery(window).load(function(){
+
+  resizeWin();
+
+  //preload(image_src,2);
+});
+
+jQuery(document).ready(function(){
+
+  jQuery(window).resize(function(){
+    resizeWin();
+  });
+
+  opening_effect();
+
+  //start_slideshow();
+
+});
+
+
+
+var opening_effect = function(){
+  jQuery("#logo_wrap").stop(true,true).fadeIn(1200,function(){
+    jQuery("#wapper").stop(true,true).fadeIn(1100,function(){
+      jQuery("#wrap .wrap_con").stop(true,true).fadeIn(1100,function(){
+      });
+    });
+  });
+}
+
+//preload images
+var preload = function(image_src,idx) {
+
+  //alert(image_src[idx]);
+  //console.log(preload);
+
+  var count = image_src.length;
+
+  jQuery.preload(
+    image_src[idx]
+    , function(){
+
+      jQuery(".pre_img").eq(idx).find("img").attr("src",image_src[idx]);
+
+      if((count-1)==idx) {
+        //alert("@")
+        //opening_effect();
+      } else {
+
+        preload(image_src,(idx+1));
+      }
+    }
+  );
+}
+
+var start_slideshow = function(){
+  setTimeout(function(){
+
+
+    var size = jQuery("#slideshow li").size();
+    var current  = jQuery("#slideshow li.current").index("#slideshow li");
+
+    jQuery("#slideshow li.current").removeClass("current");
+    jQuery("#slideshow li").eq( current ).stop(true,true).fadeOut(1000);
+
+    jQuery("#slideshow li").eq( ((current+1)%size) ).addClass("current");
+    jQuery("#slideshow li").eq( ((current+1)%size) ).stop(true,true).fadeIn(1000,function(){
+      start_slideshow();
+    });
+  }, 5000);
+}
+
+var resizeWin = function(){
+
+  var width = jQuery(window).width();
+  var height = jQuery(window).height();
+
+  jQuery("#wapper , ul#slideshow ").width(width);
+  jQuery("#wapper , ul#slideshow, ul#slideshow li").height(height);
+  //jQuery("#wapper ").width(width);
+  //jQuery("#wapper ").height(height);
+
+
+  var wrap_width = 359;
+  var wrap_left = (width-wrap_width)/2;
+  var wrap_height = 533;
+  var wrap_top = (height-wrap_height)/2;
+  if(wrap_top<0) wrap_top=0;
+
+  jQuery("#wrap").css({
+    left  : wrap_left
+    ,top  : wrap_top
+  });
+
+  var limit_h = 533;
+  var f_height = height;
+  if(height<limit_h) { //wrap_con
+    jQuery("html,body,#wapper").height(limit_h);
+    jQuery("ul#slideshow, ul#slideshow li").height(limit_h);
+
+    jQuery("html").css({"overflow-y":"scroll"});
+
+    f_height = limit_h;
+
+  } else {
+    jQuery("html,body,#wapper").height(height);
+    jQuery("ul#slideshow, ul#slideshow li").height(height);
+
+    jQuery("html").css({"overflow-y":"hidden"});
+
+  }
+
+  jQuery("ul#slideshow li").width(f_height*2560/1250);
+
+  if( width > (f_height*2560/1250) ) {
+    jQuery("#wapper ul#slideshow  , #wapper ul#slideshow li").css({
+      //left  : (width-(f_height*2560/1250))/2
+      width : width
+      ,height : width*1250/2560
+    });
+  }
+
+
+}
+</script>
+    <link rel="stylesheet" href="./resource/stylesheet/stylesheet.css" type="text/css" charset="utf-8">
+
+<style type="text/css">
+/*
+Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.9.0
+*/
+
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,select,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font:inherit}del,ins{text-decoration:none}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:baseline}sub{vertical-align:baseline}legend{color:#000}
+
+@charset "utf-8";
+/* CSS Document */
+
+/*
+.BertholdBaskervilleRegular {
+  font-family: 'Conv_copyfonts.com_baskervillebe-regular';
+}
+.BertholdBaskerville {
+  font-family:'Conv_copyfonts.com_baskervillebe-bold1',Sans-Serif;
+}
+.BertholdBaskervilleItalic {
+  font-family: 'Conv_copyfonts.com_baskervillebe-italic1';
+}
+*/
+
+/* baskerville_old_faceregular has not  */
+html , body { /*background-color:#f3f3f3;*/ overflow:hidden; background-color:#000; /*font-family: 'baskerville_old_faceregular'; */}
+
+#wapper {
+  position:relative; z-index:2;  overflow:hidden;
+}
+
+#wrap {
+  width:359px;
+  height:533px;
+
+  position:absolute; z-index:15; left:40%; top:85px;
+}
+#wrap .wrap_con {
+  background:url(images/landing_page/wrap.png) no-repeat left top;
+  position:absolute; z-index:16; left:0; top:0;
+  width:359px;
+  height:533px;
+}
+#wrap .wrap_con div { width:179px; height:174px; display:block; }
+#wrap .wrap_con div a { font-size:14px; text-align:center; color:#fff; height:50px; display:block; text-decoration:none; }
+#wrap .wrap_con div a:hover { color:#a7aeba; }
+
+ul#slideshow {
+  position:absolute; z-index:5; left:0; top:0;
+  width:100%;
+  height:100%;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+ul#slideshow li {
+  position:absolute; z-index:10; left:0; top:0;
+  display:none;
+}
+
+#logo_wrap {
+  display:none;
+
+  position:absolute; z-index:17; left:10px; top:10px;
+  width:342px;
+  height:215px;
+}
+.wrap_con { display:none; }
+#wapper { display:none; }
+
+.copy_right { color:#fff; font-size:11px; }
+
+.copy_right2 { font-size:11px; color:#fff; -webkit-transform : scale(0.75); }
+</style>
+<link rel="icon" type="image/png" href="http://www.blackbird-automotive.com/images/fav.ico">
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<body style="height: 600px;">
+
+  <div id="wrap" style="left: 460.5px; top: 33.5px;">
+      <div id="logo_wrap" style="display: block;"><img src="./images/logo.png"></div>
+      <div class="wrap_con" style="display: block;">
+          <div style="margin-top:225px;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tbody><tr>
+                  <td width="50%">
+                      <div style="width:125px; height:174px; padding-left:55px; padding-top:20px;">
+                            <a href="http://www.blackbird-automotive.com/hm/">HERITAGE<br>MOTORWORKS</a><br><br>
+                        <a href="http://www.blackbird-worksupply.com/">WORKS<br>SUPPLY</a>
+                        </div>
+                    </td>
+                    <td width="50%">
+                        <div style="width:135px; height:174px; padding-right:45px; padding-top:20px;"><a href="http://www.blackbird-autojournal.com/">AUTOMOTIVE<br>JOURNAL</a><br><br>
+                            <a href="http://www.blackbird-driversclub.com/">DRIVERS<br>CLUB</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td colspan="2" align="center" style="padding-top:40px">
+                                        <p class="copy_right2">©2015 BLACKBIRD AUTOMOTIVE. All Rights Reserved.</p>
+                    </td>
+                </tr>
+            </tbody></table>
+            </div>
+        </div>
+    </div>
+
+  <div id="wapper" rel="0" style="width: 1280px; height: 600px; display: block;">
+      <ul id="slideshow" style="width: 1280px; height: 625px;">
+          <li class="current pre_img" style="display: block; height: 625px; width: 1280px;"><img alt="" title="" height="100%" src="./images/landing_page/BA_BG_04.jpg"></li>
+        </ul>
+    </div>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51743798-2', 'auto');
+  ga('send', 'pageview');
+
+</script> -->
+
+
+</body></html>
